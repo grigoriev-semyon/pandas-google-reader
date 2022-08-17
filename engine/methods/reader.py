@@ -13,8 +13,7 @@ def get_data_google_sheets(sample_spreadsheet_id: str, tab_index: Optional[int] 
         Scopes.SPREADSHEET_SCOPE,
     ]
     credentials = Credentials.from_service_account_file(
-        settings.JSON_PATH.__str__(),
-        scopes=scopes
+        settings.JSON_PATH.__str__(), scopes=scopes
     )
     gc = gspread.authorize(credentials).open_by_key(sample_spreadsheet_id)
     if tab_index:
@@ -29,5 +28,3 @@ def get_data_google_sheets(sample_spreadsheet_id: str, tab_index: Optional[int] 
         dfi.drop(dfi.index[0], inplace=True)
         tables.append(dfi)
     return tables
-
-
